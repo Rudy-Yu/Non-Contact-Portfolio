@@ -14,9 +14,9 @@ html, body {
     /* Light theme colors (default) */
     --primary-color: #6a0dad;
     --secondary-color: #4a008a;
-    --text-color: #1a202c; /* Menggelapkan teks untuk light theme agar lebih jelas */
-    --light-bg: #f3f4f6;
-    --card-bg: #ffffff;
+    --text-color: #1f2937; /* Darker text for light background */
+    --light-bg: #f3f4f6; /* Lighter main background */
+    --card-bg: #ffffff; /* White card background */
     --border-color: #e2e8f0;
     --input-bg: #ffffff;
     --input-border: #cbd5e1;
@@ -31,11 +31,11 @@ html, body {
 
 body.dark-theme {
     /* Dark theme colors */
-    --primary-color: #9333ea;
-    --secondary-color: #6d28d9;
-    --text-color: #e0e0e0; /* Tetap cerah untuk dark theme */
-    --light-bg: #1a202c;
-    --card-bg: #2d3748;
+    --primary-color: #9333ea; /* Slightly lighter purple for dark mode */
+    --secondary-color: #6d28d9; /* Lighter secondary purple */
+    --text-color: #e0e0e0; /* Lighter text for dark background */
+    --light-bg: #1a202c; /* Darker main background */
+    --card-bg: #2d3748; /* Dark card background */
     --border-color: #4a5568;
     --input-bg: #1a202c;
     --input-border: #4a5568;
@@ -51,6 +51,8 @@ body {
     line-height: 1.7;
     color: var(--text-color);
     min-height: 100vh;
+    overflow-y: scroll;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* Main Content */
@@ -66,10 +68,11 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--header-bg);
+    background: var(--card-bg); /* Use card-bg for header */
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Lighter shadow */
     z-index: 1000;
+    border-bottom: 1px solid var(--border-color); /* Subtle border */
 }
 
 nav {
@@ -103,27 +106,27 @@ nav {
 
 .language-toggle-button,
 .theme-toggle-button {
-    background: transparent; /* Background transparan */
-    color: #ffffff; /* Warna teks putih */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Border semi-transparan */
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     padding: 0.5rem 0.8rem;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .language-toggle-button.active {
     background: var(--primary-color);
-    color: #ffffff;
+    color: var(--button-text-color);
     border-color: var(--primary-color);
 }
 
 .language-toggle-button:hover,
 .theme-toggle-button:hover {
-    background: rgba(255, 255, 255, 0.1); /* Background semi-transparan saat hover */
-    color: #ffffff;
-    border-color: #ffffff;
+    background: var(--light-bg);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .nav-links {
@@ -134,7 +137,7 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    color: #ffffff; /* Warna teks putih untuk kontras dengan header hitam */
+    color: var(--text-color);
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
@@ -151,10 +154,6 @@ nav {
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover {
-    color: var(--primary-color); /* Warna hover menggunakan primary color */
-}
-
 .nav-links a:hover::after {
     width: 100%;
 }
@@ -165,7 +164,7 @@ nav {
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #ffffff; /* Warna teks putih */
+    color: var(--text-color);
     cursor: pointer;
     padding: 0.5rem;
 }
@@ -330,10 +329,9 @@ nav {
 
 .skill-categories {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .skill-category {
@@ -933,4 +931,17 @@ footer p {
     height: 3px;
     background: var(--primary-color);
     border-radius: 2px;
+}
+
+@media (max-width: 600px) {
+    .skill-categories {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .skill-categories {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
 }
