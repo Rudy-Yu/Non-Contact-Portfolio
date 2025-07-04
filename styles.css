@@ -68,11 +68,11 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--card-bg); /* Use card-bg for header */
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    background: #000000 !important; /* Solid black for perfect blend with logo */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    border-bottom: 1px solid var(--border-color); /* Subtle border */
+    border-bottom: 1px solid var(--border-color);
+    /* Remove blur for perfect blend */
 }
 
 nav {
@@ -82,12 +82,22 @@ nav {
     padding: 1rem 5%;
     max-width: 1200px;
     margin: 0 auto;
+    background: transparent !important; /* Ensure nav doesn't override header bg */
 }
 
 .logo {
     height: 80px;
     display: flex;
     align-items: center;
+    color: #C0C0C0 !important;
+    font-weight: 700;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    box-shadow: none;
+    text-decoration: none !important;
+    transition: color 0.2s, transform 0.2s;
+    letter-spacing: 0.5px;
 }
 
 .logo img {
@@ -96,6 +106,12 @@ nav {
     object-fit: contain;
     display: block;
     background: transparent;
+    filter: none;
+}
+
+.logo:hover, .logo:focus {
+    color: #FFD700 !important;
+    transform: scale(1.12);
 }
 
 .language-theme-toggles {
@@ -136,26 +152,27 @@ nav {
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
+    color: #C0C0C0 !important;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: color 0.2s, transform 0.2s;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    letter-spacing: 0.5px;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background: var(--gradient);
-    transition: width 0.3s ease;
+.nav-links a::after, .nav-links a:focus::after, .nav-links a:hover::after, .nav-links a.active::after {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: none !important;
 }
 
-.nav-links a:hover::after {
-    width: 100%;
+.nav-links a:hover, .nav-links a.active {
+    color: #FFD700 !important;
+    transform: scale(1.12);
 }
 
 /* Mobile Menu Button */
@@ -944,4 +961,23 @@ footer p {
         grid-template-columns: 1fr;
         padding: 0 1rem;
     }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.16); }
+    50% { transform: scale(1.12); }
+    70% { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+.nav-links a, .logo {
+    border: none !important;
+    outline: none !important;
+}
+
+.nav-links a:hover, .nav-links a.active, .logo:hover, .logo:focus {
+    color: #FFD700 !important;
+    animation: pulse 0.5s;
+    animation-iteration-count: 1;
 }
